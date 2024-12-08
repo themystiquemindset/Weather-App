@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;900&display=swap');
-
 /* Default Configurations */
 * {
     padding: 0;
@@ -26,33 +24,70 @@ body {
 .container {
     background-color: var(--bg-color);
     width: 500px;
-    max-width: 90%; /* Added max-width for responsiveness */
-    height: auto; /* Changed from fixed height */
+    max-width: 90%;
+    height: auto;
     position: relative;
     border-radius: 30px;
-    padding: 50px 30px; /* Adjusted padding */
+    padding: 50px 30px;
     color: var(--color);
+    transition: box-shadow 0.3s ease;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: space-between; /* Equal space between items */
+    align-items: center; /* Center items horizontally */
 }
 
+/* Add shadow on hover */
+.container:hover {
+    box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.473); /* Shadow effect on hover */
+    /* add */
+}
+
+/* add */
 /* Search Box Style */
 .search-box {
     position: relative;
-    width: 100%;
-    height: 55px;
+    width: 100%; /* Ensure full width */
+    height: 55px; /* Fixed height for consistency */
     background-color: transparent;
-    border: 2px solid var(--color);
-    border-radius: 15px;
+    border: 2px solid var(--color); /* Match border color */
+    border-radius: 15px; /* Match rounded corners */
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth animation for multiple properties */
 }
 
+/* Hover Effect on Search Box */
+.search-box:hover {
+    transform: scale(1.05); /* Slightly enlarge the search box on hover */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3); /* Add a glowing effect */
+    border-color: rgba(255, 255, 255, 0.8); /* Change border color on hover */
+}
+
+/* Focus Effect for the Search Input */
+.search-box input:focus {
+    border-color: #fff; /* Highlight border */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Add a glowing focus effect */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background change on focus */
+    transform: translateY(-2px); /* Slight upward movement on focus */
+    transition: all 0.3s ease-in-out; /* Smooth transition for all effects */
+}
+
+/* Search Box Icon */
 .search-box i {
     position: absolute;
     left: 10px;
     color: var(--color);
     font-size: 1.6rem;
+    transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
+/* Icon Color Change on Hover */
+.search-box:hover i {
+    color: #b4b4b4; /* Light yellow glow effect */
+}
+
+/* Search Box Input */
 .search-box input {
     width: 100%;
     height: 100%;
@@ -64,14 +99,29 @@ body {
     text-align: center;
     text-transform: uppercase;
     padding: 0 50px; /* Added padding to prevent text overlap with icon and button */
+    transition: letter-spacing 0.3s ease, color 0.3s ease; /* Smooth animation for text effects */
 }
 
+/* Input Focus Animation */
+.search-box input:focus {
+    color: #ffffff; /* Light yellow text color */
+    letter-spacing: 0.05rem; /* Subtle spacing effect */
+}
+
+/* Placeholder Style */
 .search-box input::placeholder {
     color: var(--color);
     font-weight: 400;
     font-size: 1rem; /* Adjusted font size */
+    transition: color 0.3s ease; /* Smooth transition for placeholder color */
 }
 
+/* Placeholder Animation on Focus */
+.search-box input:focus::placeholder {
+    color: rgb(255, 255, 255); /* Faded placeholder color on focus */
+}
+
+/* Search Box Button */
 .search-box button {
     position: absolute;
     right: 10px;
@@ -80,8 +130,22 @@ body {
     color: var(--color);
     font-size: 1.6rem;
     cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth animation for scale and color */
 }
 
+/* Button Hover Effect */
+.search-box button:hover {
+    transform: scale(1.4); /* Enlarge button on hover */
+    color: rgb(255, 255, 255); /* Glow effect on hover */
+}
+
+/* Button Press Animation */
+.search-box button:active {
+    transform: scale(0.9); /* Slight shrink on press */
+    color: lightblue; /* Golden color on press */
+}
+
+/* Additional Features */
 /* Weather Box Section */
 .weather-box {
     text-align: center;
@@ -96,17 +160,22 @@ body {
 
 /* Weather Box Temperature */
 .weather-box .temperature {
-    position: relative;
+    display: block; /* Use inline-flex for better alignment */
+    align-items: baseline; /* Aligns text and span to the baseline */
+    justify-content: center; /* Centers the temperature content */
     font-size: 4rem;
     line-height: 1;
     font-weight: 700;
     margin: 10px auto;
+    position: relative;
 }
 
 /* Weather Box Temperature Span */
 .weather-box .temperature span {
-    font-size: 1.7rem;
-    position: absolute;
+    font-size: 1.5rem; /* Adjusted font size for "°C" */
+     /* Adds space between the temperature and "°C" */
+    line-height: 1;
+    z-index: -10;
 }
 
 /* Weather Box Description */
@@ -127,7 +196,11 @@ body {
 }
 
 .weather-details .humidity,
-.weather-details .wind {
+.weather-details .wind,
+.weather-details .pressure,
+.weather-details .visibility,
+.weather-details .sunrise,
+.weather-details .sunset {
     display: flex;
     align-items: center;
     width: 48%;
@@ -146,6 +219,40 @@ body {
 }
 
 .weather-details p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Additional Weather Details Section */
+.additional-details {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.additional-details .pressure,
+.additional-details .visibility,
+.additional-details .sunrise,
+.additional-details .sunset {
+    display: flex;
+    align-items: center;
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.additional-details i {
+    font-size: 48px;
+    margin-right: 10px;
+}
+
+.additional-details span {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.additional-details p {
     font-size: 14px;
     font-weight: 500;
 }
@@ -184,6 +291,60 @@ body {
     cursor: pointer;
     border-radius: 5px;
 }
+/* Dropdown Menu Styles */
+/* Dropdown Wrapper */
+.dropdown-wrapper {
+    position: relative;
+    width: 100%; /* Matches the search box width */
+    height: 55px; /* Matches the search box height */
+    border: 2px solid var(--color); /* Matches the search box border */
+    border-radius: 15px; /* Matches the search box border-radius */
+    background-color: transparent; /* Matches the search box background */
+}
+
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Directly below the search box */
+    left: 0;
+    width: 100%; /* Match the search box width */
+    background-color: lightblue; /* Match search box background */
+    border: 2px solid var(--color); /* Match search box border */
+    border-radius: 15px; /* Match rounded corners */
+    z-index: 10;
+    list-style: none;
+    margin: 0; /* Remove extra spacing */
+    padding: 0; /* Remove extra spacing */
+    display: none; /* Hidden by default */
+}
+
+/* Dropdown Menu Items */
+.dropdown-menu li {
+    padding: 15px; /* Adjust padding for consistency */
+    cursor: pointer;
+    text-align: center;
+    background-color: lightblue; /* Match the search box */
+    color: var(--color); /* Match text color */
+    transition: background-color 0.2s ease;
+}
+
+/* Hover Effect for Menu Items */
+.dropdown-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+}
+
+/* Fixing Alignment */
+.dropdown-menu li:first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.dropdown-menu li:last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
@@ -218,20 +379,27 @@ body {
     }
 
     .weather-details .humidity,
-    .weather-details .wind {
+    .weather-details .wind,
+    .additional-details .pressure,
+    .additional-details .visibility,
+    .additional-details .sunrise,
+    .additional-details .sunset {
         width: 100%;
         justify-content: center;
     }
 
-    .weather-details i {
+    .weather-details i,
+    .additional-details i {
         font-size: 48px;
     }
 
-    .weather-details span {
+    .weather-details span,
+    .additional-details span {
         font-size: 20px;
     }
 
-    .weather-details p {
+    .weather-details p,
+    .additional-details p {
         font-size: 12px;
     }
 }
@@ -272,15 +440,18 @@ body {
         font-size: 1.2rem;
     }
 
-    .weather-details i {
+    .weather-details i,
+    .additional-details i {
         font-size: 40px;
     }
 
-    .weather-details span {
+    .weather-details span,
+    .additional-details span {
         font-size: 18px;
     }
 
-    .weather-details p {
+    .weather-details p,
+    .additional-details p {
         font-size: 10px;
     }
 }
